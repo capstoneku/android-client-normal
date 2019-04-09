@@ -36,15 +36,19 @@ public class SignInActivity extends AppCompatActivity {
 
         Button signInBtn = findViewById(R.id.btn_sign_in);
         final EditText emailEdt = findViewById(R.id.et_email);
+        final EditText nicknameEdt = findViewById(R.id.et_nickname);
         final EditText passwordEdt = findViewById(R.id.et_password);
+        final EditText passwordConfirmationEdt = findViewById(R.id.et_password_confirm);
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String account = emailEdt.getText().toString().trim();
+                final String nickname = nicknameEdt.getText().toString().trim();
                 final String password = passwordEdt.getText().toString().trim();
+                final String passwordConfirmation = passwordConfirmationEdt.getText().toString().trim();
 
-                SignInData signInData = new SignInData(account, password);
+                SignInData signInData = new SignInData(account, nickname, password, passwordConfirmation);
 
                 Call<SignInResponse> call = mSignInRequest.signInRequest(signInData);
                 call.enqueue(new Callback<SignInResponse>() {

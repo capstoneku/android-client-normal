@@ -7,4 +7,8 @@ public class SignInResponse {
     public boolean success;
     @SerializedName("message")
     public String message;
+    @SerializedName("errors")
+    public String errors;
+    @SerializedName("data")
+    public String data; // JSON Web Token
 }
