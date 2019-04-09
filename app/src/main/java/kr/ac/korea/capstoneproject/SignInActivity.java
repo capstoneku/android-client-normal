@@ -27,13 +27,24 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        initConnection();
         initView();
     }
 
-    private void initView() {
+    /**
+     * 네트워크 관련 객체 초기화 함수
+     */
+    private void initConnection() {
         mRetrofit = getInstance();
         mSignInRequest = mRetrofit.create(SignInRequest.class);
+    }
 
+    /**
+     * 뷰 객체 초기화 함수
+     * 1개의 Button과 4개의 EditText를 초기화한다.
+     * 회원가입 버튼 클릭 이벤트를 정의한다.
+     */
+    private void initView() {
         Button signInBtn = findViewById(R.id.btn_sign_in);
         final EditText emailEdt = findViewById(R.id.et_email);
         final EditText nicknameEdt = findViewById(R.id.et_nickname);
