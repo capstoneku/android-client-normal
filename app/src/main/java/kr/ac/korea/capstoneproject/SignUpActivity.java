@@ -46,14 +46,14 @@ public class SignUpActivity extends AppCompatActivity {
      * 회원가입 버튼 클릭 이벤트를 정의한다.
      */
     private void initView() {
-        Button signInBtn = findViewById(R.id.btn_sign_in);
+        Button signUpBtn = findViewById(R.id.btn_sign_up);
         final EditText emailEdt = findViewById(R.id.et_email);
         final EditText nicknameEdt = findViewById(R.id.et_nickname);
         final EditText passwordEdt = findViewById(R.id.et_password);
         // TODO: 4/9/19 비밀번호 확인 기능 추가, 서버 API 수정 요청
         final EditText passwordConfirmationEdt = findViewById(R.id.et_password_confirm);
 
-        signInBtn.setOnClickListener(new View.OnClickListener() {
+        signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String account = emailEdt.getText().toString().trim();
@@ -70,13 +70,18 @@ public class SignUpActivity extends AppCompatActivity {
                         Log.d("zzanzu", "onResponse: " + response.body().success);
 
                         if (response.body().success) {
-                            Toast.makeText(getApplicationContext(), "Sign Up Success",
+                            Toast.makeText(getApplicationContext(),
+                                    "Sign Up Success, Please Sign in",
                                     Toast.LENGTH_LONG)
                                     .show();
 
                             Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
                             startActivity(intent);
                             finish();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "No Response, try later",
+                                    Toast.LENGTH_LONG)
+                                    .show();
                         }
                     }
 
@@ -85,10 +90,6 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Sign Up Fail, try later",
                                 Toast.LENGTH_LONG)
                                 .show();
-
-                        Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                        startActivity(intent);
-                        finish();
                     }
                 });
 
