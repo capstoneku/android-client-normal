@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignInActivity" />
+        <activity android:name=".SignUpActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
