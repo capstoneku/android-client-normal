@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".IntroActivity"
             android:theme="@style/CustomNoActionBar">
@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".SignInActivity" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
     </application>
 
 </manifest>
