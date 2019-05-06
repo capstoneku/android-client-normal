@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:layout_marginLeft="3dp"
+            android:src="@drawable/home"/>
+
+
+
+        <TextView
+            android:id="@+id/mainName"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_weight="1"
+            android:text="커피공화국"
+            android:textColor="#74451C"
+            android:textSize="30dp" />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="38dp"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:layout_marginRight="2dp"
+            android:src="@drawable/alarm"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginVertical="10dp"
+        android:background="#ECE9E9"
+        android:padding="5dp">
+        <EditText
+            android:id="@+id/searchCafe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="3"
+            android:drawableRight="@android:drawable/ic_menu_search"
+            android:hint="  카페이름으로 검색"
+            android:textColorHint="#929596"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="2dp">
+        <TextView
+            android:id="@+id/searchText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4D4A4A"
+            android:text="주변카페 검색"
+            android:layout_marginLeft="10dp"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:id="@+id/nowhere"
+        android:orientation="horizontal"
+        tools:ignore="ExtraText">
+
+        <EditText
+            android:id="@+id/locationShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:editable="false"
+            android:padding="10dp"
+            android:text="서울시 성북구 안암동5가"
+            android:textSize="25dp" />
+
+        <ImageButton
+            android:id="@+id/locationUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="9"
+            android:focusableInTouchMode="true"
+            android:padding="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/placeholder"
+            android:layout_marginRight="10dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        tools:context="com.example.mskir.hw7.MainActivity">
+
+        <ListView
+            android:id="@+id/listView_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbarAlwaysDrawVerticalTrack="true"
+            android:textFilterEnabled="true" />
+    </LinearLayout>
+</LinearLayout>
+
