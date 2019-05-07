@@ -11,10 +11,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initView();
+        initToolBar();
     }
 
-    private void initView() {
+    /**
+     * 상단 툴바 초기화
+     *
+     * @author Chanjoo Lee
+     * @version 0.1
+     */
+    private void initToolBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.app_name);
 
