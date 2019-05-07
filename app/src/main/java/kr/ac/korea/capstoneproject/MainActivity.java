@@ -1,5 +1,7 @@
 package kr.ac.korea.capstoneproject;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import kr.ac.korea.capstoneproject.fragment.HomeFragment;
 import kr.ac.korea.capstoneproject.fragment.MyPageFragment;
 
 public class MainActivity extends AppCompatActivity {
+    private BottomNavigationView mBottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
+                // TODO: 2019-05-08 바텀 네비게이션 버튼들의 아이콘, 텍스트 색을 unfocusd 색으로 변경.
                 replaceFragment(new HomeFragment());
                 return true;
             }
@@ -84,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
      * @version 0.1
      */
     private void initBottomNavBar() {
-        BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+        mBottomNavigationView = findViewById(R.id.nav_view);
+        mBottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
