@@ -24,6 +24,15 @@ public class MainActivity extends AppCompatActivity {
         initView();
     }
 
+    /**
+     * 메인 액티비티의 뷰들을 초기화한다.
+     * 1) 상단 툴바
+     * 2) 바텀 네비게이션 바
+     * 3) 홈 프래그먼트 표시
+     *
+     * @author Chanjoo Lee
+     * @version 0.1
+     */
     private void initView() {
         initToolBar();
         initBottomNavBar();
@@ -34,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * 상단 툴바 초기화
+     * 메인액티비티의 상단 툴바를 초기화한다.
      *
      * @author Chanjoo Lee
      * @version 0.1
@@ -49,6 +58,31 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_black_24dp);
     }
 
+    /**
+     * 상단 툴바의 버튼 클릭 이벤트를 정의한다.
+     *
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: {
+                replaceFragment(new HomeFragment());
+                return true;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 바텀 네비게이션 바를 초기화한다.
+     * 네비게이션 바의 메뉴들의 클릭 이벤트도 정의한다.
+     *
+     * @author Chanjoo Lee
+     * @version 0.1
+     */
     private void initBottomNavBar() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -70,11 +104,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * 메인 액티비티에 표시되는 프래그먼트를 교체한다.
+     * 프래그먼트 교체시 이전에 표시되었던 프래그먼트의 데이터는 유지되지 않는다(addToBackStack(null))
+     *
+     * @param fragment 메인 액티비티에 표시하려는 프래그먼트
+     * @author Chanjoo Lee
+     * @version 0.1
+     */
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.fragment_main, fragment);
-        transaction.addToBackStack(null);
+//        transaction.addToBackStack(null);
         transaction.commit();
     }
 }
