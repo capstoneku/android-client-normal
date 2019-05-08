@@ -25,6 +25,10 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
+
+        // 채연
+        <activity android:name=".CafePage" />
+
     </application>
 
 </manifest>
