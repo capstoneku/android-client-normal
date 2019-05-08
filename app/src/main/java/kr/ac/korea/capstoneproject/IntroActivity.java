@@ -2,6 +2,7 @@ package kr.ac.korea.capstoneproject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,14 +32,30 @@ public class IntroActivity extends AppCompatActivity {
      * @version 0.1
      */
     private void moveToMainActivity(final Context context) {
+        SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+
         Handler handler = new Handler();
-        handler.postDelayed((new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(context, SignInActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        }), DELAY_TIME);
+
+        if(sharedPreferences.getString("jwt", "none") != "none") {
+            handler.postDelayed((new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(context, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }), DELAY_TIME);
+        } else {
+            handler.postDelayed((new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(context, SignInActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }), DELAY_TIME);
+        }
+
+
     }
 }
