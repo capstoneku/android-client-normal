@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 
 import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance;
 
-public class CafePage extends AppCompatActivity implements View.OnClickListener {
+public class CafePageActivity extends AppCompatActivity implements View.OnClickListener {
     private Retrofit mRetrofit;
     private CafePageRequest mCafePageRequest;
 
@@ -21,7 +21,7 @@ public class CafePage extends AppCompatActivity implements View.OnClickListener 
 
         initConnection();
         initView();
-        
+
         Button button =(Button) findViewById(R.id.button_order);
         button.setOnClickListener(this);
     }
