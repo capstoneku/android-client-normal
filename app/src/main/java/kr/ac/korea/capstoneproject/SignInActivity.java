@@ -70,7 +70,7 @@ public class SignInActivity extends AppCompatActivity {
 
                         if(response.body().success == true) {
                             String JSONWebToken = response.body().data;
-                            saveToken(JSONWebToken);
+                            saveToken("JSONWebToken", JSONWebToken);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             finish();
@@ -96,10 +96,18 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private void saveToken(String JSONWebToken) {
+    /**
+     * 기기 내부 SharePreference에 토큰을 저장한다
+     *
+     * TODO 2019-05-11 : Utils 파일 만들어서 public한 함수로 만들기(FCM 토큰 저장하는 기능과 중복됨)
+     *
+     * @param tokenName : 토큰 이름
+     * @param token : 토큰 값
+     */
+    private void saveToken(String tokenName, String token) {
         SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("jwt", JSONWebToken);
+        editor.putString(tokenName, token);
         editor.apply();
     }
 }
