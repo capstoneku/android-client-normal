@@ -68,8 +68,8 @@ public class SignInActivity extends AppCompatActivity {
                     public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                         Log.d("zzanzu", "onResponse: " + response.body().success);
 
-                        if(response.body().success == true) {
-                            String JSONWebToken = response.body().data;
+                        if(response.body().success) {
+                            String JSONWebToken = response.body().data.getToken();
                             saveToken("JSONWebToken", JSONWebToken);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);

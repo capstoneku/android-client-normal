@@ -11,11 +11,14 @@ public class SignUpData {
     public String password;
     @SerializedName("passwordConfirmation")
     public String passwordConfirmation;
+    @SerializedName("fcmToken")
+    public String fcmToken;
 
-    public SignUpData(String email, String nickname, String password, String passwordConfirmation) {
+    public SignUpData(String email, String nickname, String password, String passwordConfirmation, String fcmToken) {
         this.email = email;
         this.nickname = nickname;
         this.password = password;
         this.passwordConfirmation = passwordConfirmation;
+        this.fcmToken = fcmToken;
     }
 }
