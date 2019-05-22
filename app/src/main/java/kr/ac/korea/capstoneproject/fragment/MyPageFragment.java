@@ -43,7 +43,11 @@ public class MyPageFragment extends Fragment {
         mUserMailTv = view.findViewById(R.id.tv_user_mail);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
-//        mUserName = sharedPreferences.getString("")
+        mUserName = sharedPreferences.getString("nickname", "none");
+
+        if (mUserName != "none") {
+            mUserNameTv.setText(mUserName + " 님");
+        }
     }
 
 }

@@ -101,7 +101,7 @@ public class SignInActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("jwt", JSONWebToken);
-        editor.putString("jwt", nickname);
+        editor.putString("nickname", nickname);
         editor.apply();
     }
 }
