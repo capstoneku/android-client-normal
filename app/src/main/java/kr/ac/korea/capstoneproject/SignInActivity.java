@@ -73,8 +73,8 @@ public class SignInActivity extends AppCompatActivity {
                             saveToken(JSONWebToken);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
                             finish();
+                            startActivity(intent);
                         }
                     }
 
