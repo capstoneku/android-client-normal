@@ -69,8 +69,9 @@ public class SignInActivity extends AppCompatActivity {
                         Log.d("zzanzu", "onResponse: " + response.body().success);
 
                         if(response.body().success == true) {
-                            String JSONWebToken = response.body().data;
-                            saveToken(JSONWebToken);
+                            String JSONWebToken = response.body().data.getToken();
+                            String nickname = response.body().data.getNickname();
+                            saveUserData(JSONWebToken, nickname);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             finish();
@@ -96,10 +97,11 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private void saveToken(String JSONWebToken) {
+    private void saveUserData(String JSONWebToken, String nickname) {
         SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("jwt", JSONWebToken);
+        editor.putString("jwt", nickname);
         editor.apply();
     }
 }
