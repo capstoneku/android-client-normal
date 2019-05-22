@@ -13,10 +13,16 @@ public class SignInResponse {
     public Data data;
 
     public class Data {
+        @SerializedName("email")
+        String email;
         @SerializedName("nickname")
         String nickname;
         @SerializedName("token")
         String token; // JSON Web Token
+
+        public String getEmail() {
+            return email;
+        }
 
         public String getNickname() {
             return nickname;

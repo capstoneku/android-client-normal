@@ -44,9 +44,11 @@ public class MyPageFragment extends Fragment {
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
         mUserName = sharedPreferences.getString("nickname", "none");
+        mUserMail = sharedPreferences.getString("email", "none");
 
-        if (mUserName != "none") {
+        if (mUserName != "none" && mUserMail != "none") {
             mUserNameTv.setText(mUserName + " 님");
+            mUserMailTv.setText(mUserMail);
         }
     }
 

@@ -71,7 +71,9 @@ public class SignInActivity extends AppCompatActivity {
                         if(response.body().success == true) {
                             String JSONWebToken = response.body().data.getToken();
                             String nickname = response.body().data.getNickname();
-                            saveUserData(JSONWebToken, nickname);
+                            String eMail = response.body().data.getEmail();
+                            // TODO: 2019-05-22 이메일 주소도 받기 / 서버 작업자에게 요청
+                            saveUserData(JSONWebToken, nickname, eMail);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             finish();
@@ -97,11 +99,12 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
-    private void saveUserData(String JSONWebToken, String nickname) {
+    private void saveUserData(String JSONWebToken, String nickname, String eMail) {
         SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("jwt", JSONWebToken);
         editor.putString("nickname", nickname);
+        editor.putString("email", eMail);
         editor.apply();
     }
 }
