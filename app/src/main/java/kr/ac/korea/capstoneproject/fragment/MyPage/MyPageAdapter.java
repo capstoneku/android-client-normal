@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kr.ac.korea.capstoneproject.R;
 
@@ -38,8 +39,23 @@ public class MyPageAdapter extends RecyclerView.Adapter<MyPageAdapter.MyPageView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyPageAdapter.MyPageViewHolder myPageViewHolder, int i) {
-        myPageViewHolder.textView.setText(mDataset[i]);
+    public void onBindViewHolder(@NonNull MyPageAdapter.MyPageViewHolder myPageViewHolder, final int position) {
+        myPageViewHolder.textView.setText(mDataset[position]);
+
+        myPageViewHolder.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), mDataset[position], Toast.LENGTH_LONG).show();
+
+                // TODO: 2019-05-27 메뉴 클릭시 액티비티 전환 구현
+//                switch (position) {
+//                    case 0 :
+//                        break;
+//                    case 1 :
+//                        break;
+//                }
+            }
+        });
     }
 
     @Override
