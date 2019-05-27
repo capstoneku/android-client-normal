@@ -1,7 +1,5 @@
 package kr.ac.korea.capstoneproject;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -14,7 +12,7 @@ import android.view.MenuItem;
 import kr.ac.korea.capstoneproject.fragment.CouponFragment;
 import kr.ac.korea.capstoneproject.fragment.HistoryFragment;
 import kr.ac.korea.capstoneproject.fragment.HomeFragment;
-import kr.ac.korea.capstoneproject.fragment.MyPageFragment;
+import kr.ac.korea.capstoneproject.fragment.MyPage.MyPageFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigationView;

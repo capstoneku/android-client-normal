@@ -72,7 +72,7 @@ public class SignInActivity extends AppCompatActivity {
                             String JSONWebToken = response.body().data.getToken();
                             String nickname = response.body().data.getNickname();
                             String eMail = response.body().data.getEmail();
-                            // TODO: 2019-05-22 이메일 주소도 받기 / 서버 작업자에게 요청
+
                             saveUserData(JSONWebToken, nickname, eMail);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
