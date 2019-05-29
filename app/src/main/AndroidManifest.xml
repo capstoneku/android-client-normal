@@ -12,6 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/CustomNoActionBar"
         android:usesCleartextTraffic="true">
+
+        <service
+            android:name=".FirbaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".IntroActivity"
             android:theme="@style/CustomNoActionBar">
