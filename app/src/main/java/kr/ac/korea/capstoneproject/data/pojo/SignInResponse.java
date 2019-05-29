@@ -10,5 +10,14 @@ public class SignInResponse {
     @SerializedName("errors")
     public String errors;
     @SerializedName("data")
-    public String data; // JSON Web Token
+    public SignInResponseData data; // JSON Web Token
+
+    public class SignInResponseData {
+        String nickname;
+        String token;
+
+        public String getToken() {
+            return token;
+        }
+    }
 }
