@@ -1,20 +1,18 @@
 package kr.ac.korea.capstoneproject;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import kr.ac.korea.capstoneproject.fragment.CouponFragment;
 import kr.ac.korea.capstoneproject.fragment.HistoryFragment;
 import kr.ac.korea.capstoneproject.fragment.HomeFragment;
-import kr.ac.korea.capstoneproject.fragment.MyPageFragment;
+import kr.ac.korea.capstoneproject.fragment.MyPage.MyPageFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigationView;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         initToolBar();
         initBottomNavBar();
 
-        // 최초 실행시 홈 프래그먼트를 기본으로 표
+        // 최초 실행시 홈 프래그먼트를 기본으로 표시
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_main, new HomeFragment()).commit();
     }
@@ -71,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
-                // TODO: 2019-05-08 바텀 네비게이션 버튼들의 아이콘, 텍스트 색을 unfocusd 색으로 변경.
+                // TODO: 2019-05-08 바텀 네비게이션 버튼들의 아이콘, 텍스트 색을 unfocused 색으로 변경.
                 replaceFragment(new HomeFragment());
                 return true;
             }

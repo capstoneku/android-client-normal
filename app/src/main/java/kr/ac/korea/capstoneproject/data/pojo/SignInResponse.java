@@ -10,11 +10,23 @@ public class SignInResponse {
     @SerializedName("errors")
     public String errors;
     @SerializedName("data")
-    public SignInResponseData data; // JSON Web Token
+    public Data data;
 
-    public class SignInResponseData {
+    public class Data {
+        @SerializedName("email")
+        String email;
+        @SerializedName("nickname")
         String nickname;
-        String token;
+        @SerializedName("token")
+        String token; // JSON Web Token
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getNickname() {
+            return nickname;
+        }
 
         public String getToken() {
             return token;

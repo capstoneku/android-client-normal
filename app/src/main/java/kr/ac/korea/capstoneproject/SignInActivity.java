@@ -68,9 +68,12 @@ public class SignInActivity extends AppCompatActivity {
                     public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                         Log.d("zzanzu", "onResponse: " + response.body().success);
 
-                        if(response.body().success) {
+                        if(response.body().success == true) {
                             String JSONWebToken = response.body().data.getToken();
-                            saveToken("JSONWebToken", JSONWebToken);
+                            String nickname = response.body().data.getNickname();
+                            String eMail = response.body().data.getEmail();
+
+                            saveUserData(JSONWebToken, nickname, eMail);
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             finish();
@@ -97,17 +100,21 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     /**
-     * 기기 내부 SharePreference에 토큰을 저장한다
+     * 기기 내부 SharePreference에 사용자 정보(토큰, 닉네임, 이메일)를 저장한다
      *
      * TODO 2019-05-11 : Utils 파일 만들어서 public한 함수로 만들기(FCM 토큰 저장하는 기능과 중복됨)
      *
-     * @param tokenName : 토큰 이름
-     * @param token : 토큰 값
+     * @param JSONWebToken : JSON 웹 토큰
+     * @param nickname : 사용자 닉네임
+     * @param eMail : 사용자 이메일 주소
      */
-    private void saveToken(String tokenName, String token) {
+    private void saveUserData(String JSONWebToken, String nickname, String eMail) {
         SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(tokenName, token);
+        editor.putString("jwt", JSONWebToken);
+        editor.putString("nickname", nickname);
+        editor.putString("email", eMail);
+
         editor.apply();
     }
 }
