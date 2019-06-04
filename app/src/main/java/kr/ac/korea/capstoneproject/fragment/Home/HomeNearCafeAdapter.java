@@ -1,5 +1,6 @@
 package kr.ac.korea.capstoneproject.fragment.Home;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import kr.ac.korea.capstoneproject.R;
 
 public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapter.NearCafeViewHolder> {
+    private Context mContext;
     private ArrayList<HomeNearCafeData> mDataset;
 
     public class NearCafeViewHolder extends RecyclerView.ViewHolder{
@@ -29,7 +33,8 @@ public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapte
         }
     }
 
-    public HomeNearCafeAdapter(ArrayList<HomeNearCafeData> mDataset) {
+    public HomeNearCafeAdapter(Context context, ArrayList<HomeNearCafeData> mDataset) {
+        this.mContext = context;
         this.mDataset = mDataset;
     }
 
@@ -47,8 +52,11 @@ public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapte
     @Override
     public void onBindViewHolder(@NonNull NearCafeViewHolder nearCafeViewHolder, int i) {
         // glide로 이미지 적용
+        Glide.with(mContext).load(mDataset.get(i).getCafeImgUrl()).into(nearCafeViewHolder.cafeIv);
         // 거리 적용
+
         // 이름 적용
+        nearCafeViewHolder.cafeNameTv.setText(mDataset.get(i).getCafeName());
         // 클릭 이벤트 적용
     }
 

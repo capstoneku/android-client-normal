@@ -12,7 +12,7 @@
         android:layout_marginBottom="@dimen/my_page_recyclerview_row_margin_bottom"
         android:layout_marginLeft="@dimen/my_page_recyclerview_row_margin_left"
         android:text="EXAMPLE"
-        android:textColor="@color/themeCollorAccent"
+        android:textColor="@color/themeColorAccent"
         android:textSize="@dimen/my_page_recyclerview_row_textview_size"
         />
 
