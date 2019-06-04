@@ -6,6 +6,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 
 public interface CafePageRequest {
-        @GET("/api/cafes/" )
+        @GET("/api/cafes/Ic5D7iayaEK7bxzD" )
         Call<CafePageResponse> cafePageRequest();
 }

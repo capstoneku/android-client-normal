@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import kr.ac.korea.capstoneproject.fragment.CafePageFragment;
+
 public class IntroActivity extends AppCompatActivity {
     private static final int DELAY_TIME = 1500;
 
@@ -49,7 +51,7 @@ public class IntroActivity extends AppCompatActivity {
             handler.postDelayed((new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(context, SignInActivity.class);
+                    Intent intent = new Intent(context, SignUpActivity.class);
                     startActivity(intent);
                     finish();
                 }
