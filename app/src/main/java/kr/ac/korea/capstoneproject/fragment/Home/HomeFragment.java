@@ -9,8 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import kr.ac.korea.capstoneproject.R;
-import kr.ac.korea.capstoneproject.data.remote.SignInRequest;
 import retrofit2.Retrofit;
 
 import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance;
@@ -24,6 +25,8 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private ArrayList<HomeNearCafeData> mDataset;
 
     public HomeFragment() {
         // Required empty public constructor
