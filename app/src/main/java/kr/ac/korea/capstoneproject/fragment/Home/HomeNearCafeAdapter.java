@@ -7,10 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import kr.ac.korea.capstoneproject.R;
 
 public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapter.NearCafeViewHolder> {
+    private ArrayList<HomeNearCafeData> mDataset;
+
     public class NearCafeViewHolder extends RecyclerView.ViewHolder{
         public CircleImageView cafeIv;
         public TextView cafeDistanceTv;
@@ -23,6 +27,10 @@ public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapte
             cafeDistanceTv = v.findViewById(R.id.tv_home_near_cafe_distance);
             cafeNameTv = v.findViewById(R.id.tv_home_near_cafe_name);
         }
+    }
+
+    public HomeNearCafeAdapter(ArrayList<HomeNearCafeData> mDataset) {
+        this.mDataset = mDataset;
     }
 
     @NonNull
