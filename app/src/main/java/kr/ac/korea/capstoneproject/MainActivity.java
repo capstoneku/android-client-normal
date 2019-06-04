@@ -11,7 +11,7 @@ import android.view.MenuItem;
 
 import kr.ac.korea.capstoneproject.fragment.CouponFragment;
 import kr.ac.korea.capstoneproject.fragment.HistoryFragment;
-import kr.ac.korea.capstoneproject.fragment.HomeFragment;
+import kr.ac.korea.capstoneproject.fragment.Home.HomeFragment;
 import kr.ac.korea.capstoneproject.fragment.MyPage.MyPageFragment;
 
 public class MainActivity extends AppCompatActivity {
