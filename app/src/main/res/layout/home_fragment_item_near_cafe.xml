@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="68dp"
+    android:layout_height="120dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center_horizontal"
+    >
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_home_near_cafe_img"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/img_default_coffee_shop"
         app:civ_border_color="@color/themeColorAccent"
         app:civ_border_width="2dp"
+        android:layout_marginBottom="8dp"
         />
 
     <TextView
@@ -20,6 +23,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="test"
+        android:textSize="12dp"
+        android:textColor="@color/nearCafeDistanceFont"
+        android:layout_marginBottom="8dp"
         />
 
     <TextView
@@ -27,6 +33,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="test"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="8sp"
+        android:autoSizeMaxTextSize="12sp"
+        android:textColor="@color/themeColorAccent"
+        android:gravity="center"
         />
 
 </LinearLayout>

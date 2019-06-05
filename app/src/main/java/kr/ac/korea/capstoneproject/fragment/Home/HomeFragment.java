@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
 
     private void initRecyclerView(View view) {
         mRecyclerView = view.findViewById(R.id.rv_home_near_cafe);
-        mLayoutManager = new LinearLayoutManager(getContext());
+        mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         getNearCafeData(getContext(), new getNearCafeDataCallback() {

@@ -53,7 +53,7 @@ public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapte
     @Override
     public void onBindViewHolder(@NonNull NearCafeViewHolder nearCafeViewHolder, int i) {
         // glide로 이미지 적용
-//        Glide.with(mContext).load(mDataset.get(i).getImg()).into(nearCafeViewHolder.cafeIv);
+        Glide.with(mContext).load(mDataset.get(i).getImg()).into(nearCafeViewHolder.cafeIv);
         // 거리 적용
         nearCafeViewHolder.cafeDistanceTv.setText("@@m");
         // 이름 적용

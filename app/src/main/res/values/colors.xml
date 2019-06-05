@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="themeColor">#D8CCBE</color>
     <color name="themeColorAccent">#522223</color>
+
+    <color name="nearCafeBackgroundGrey">#E1E1DE</color>
+    <color name="nearCafeDistanceFont">#116456</color>
+
 </resources>
