@@ -1,32 +1,27 @@
 package kr.ac.korea.capstoneproject.fragment.Home;
 
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import kr.ac.korea.capstoneproject.MainActivity;
 import kr.ac.korea.capstoneproject.R;
+import kr.ac.korea.capstoneproject.data.pojo.NearCafeData;
+import kr.ac.korea.capstoneproject.data.pojo.NearCafeResponse;
+import kr.ac.korea.capstoneproject.data.remote.GetNearCafeRequest;
 import kr.ac.korea.capstoneproject.utils.GPS;
-import kr.ac.korea.capstoneproject.utils.PermissionUtil;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance;
@@ -36,6 +31,7 @@ import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance
  */
 public class HomeFragment extends Fragment {
     private Retrofit mRetrofit;
+    private GetNearCafeRequest mGetNearCafeRequest;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -53,6 +49,9 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         initConnection();
+        initRecyclerView(view);
+
+        getNearCafeData(getContext());
 
         return view;
     }
@@ -62,6 +61,8 @@ public class HomeFragment extends Fragment {
      */
     private void initConnection() {
         mRetrofit = getInstance();
+        mGetNearCafeRequest = mRetrofit.create(GetNearCafeRequest.class);
+
     }
 
     private void initRecyclerView(View view) {
@@ -70,7 +71,28 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
     }
 
-//    private ArrayList<HomeNearCafeData> getNearCafeData(Context context) {
-//
-//    }
+    private ArrayList<NearCafeResponse.Cafe> getNearCafeData(Context context) {
+        final ArrayList<NearCafeResponse.Cafe>[] nearCafeList = new ArrayList[]{new ArrayList<>()};
+
+        GPS gps = new GPS(context);
+        Location location = gps.getLocation();
+
+        NearCafeData nearCafeData = new NearCafeData(location.getLongitude(), location.getLatitude());
+
+        Call<NearCafeResponse> call = mGetNearCafeRequest.getNearCafeRequest(nearCafeData);
+        call.enqueue(new Callback<NearCafeResponse>() {
+            @Override
+            public void onResponse(Call<NearCafeResponse> call, Response<NearCafeResponse> response) {
+                Log.d("zzanzu", "onResponse: " + response.body().data.get(0).getName());
+                nearCafeList[0] = response.body().getData();
+            }
+
+            @Override
+            public void onFailure(Call<NearCafeResponse> call, Throwable t) {
+                Log.d("zzanzu", "onFailure: " + t.toString());
+            }
+        });
+
+        return nearCafeList[0];
+    }
 }

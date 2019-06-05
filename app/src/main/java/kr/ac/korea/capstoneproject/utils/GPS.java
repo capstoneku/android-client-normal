@@ -110,10 +110,9 @@ public class GPS extends Service implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-
-        Toast toast = Toast.makeText(mContext, Integer.toString(count), Toast.LENGTH_SHORT);
-        toast.show();
-        count++;
+//        Toast toast = Toast.makeText(mContext, Integer.toString(count), Toast.LENGTH_SHORT);
+//        toast.show();
+//        count++;
     }
 
     @Override
