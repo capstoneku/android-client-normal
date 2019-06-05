@@ -22,7 +22,7 @@ public class NearCafeResponse {
     }
 
     public ArrayList<Cafe> getData() {
-        return data;
+        return this.data;
     }
 
     public class Cafe {

@@ -14,10 +14,11 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import kr.ac.korea.capstoneproject.R;
+import kr.ac.korea.capstoneproject.data.pojo.NearCafeResponse;
 
 public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapter.NearCafeViewHolder> {
     private Context mContext;
-    private ArrayList<HomeNearCafeData> mDataset;
+    private ArrayList<NearCafeResponse.Cafe> mDataset = new ArrayList<>();
 
     public class NearCafeViewHolder extends RecyclerView.ViewHolder{
         public CircleImageView cafeIv;
@@ -33,14 +34,14 @@ public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapte
         }
     }
 
-    public HomeNearCafeAdapter(Context context, ArrayList<HomeNearCafeData> mDataset) {
+    public HomeNearCafeAdapter(Context context, ArrayList<NearCafeResponse.Cafe> mDataset) {
         this.mContext = context;
-        this.mDataset = mDataset;
+        this.mDataset.addAll(mDataset);
     }
 
     @NonNull
     @Override
-    public NearCafeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
+    public HomeNearCafeAdapter.NearCafeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.home_fragment_item_near_cafe, parent, false);
 
@@ -52,17 +53,17 @@ public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapte
     @Override
     public void onBindViewHolder(@NonNull NearCafeViewHolder nearCafeViewHolder, int i) {
         // glide로 이미지 적용
-        Glide.with(mContext).load(mDataset.get(i).getCafeImgUrl()).into(nearCafeViewHolder.cafeIv);
+//        Glide.with(mContext).load(mDataset.get(i).getImg()).into(nearCafeViewHolder.cafeIv);
         // 거리 적용
-
+        nearCafeViewHolder.cafeDistanceTv.setText("@@m");
         // 이름 적용
-        nearCafeViewHolder.cafeNameTv.setText(mDataset.get(i).getCafeName());
+        nearCafeViewHolder.cafeNameTv.setText(mDataset.get(i).getName());
         // 클릭 이벤트 적용
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return mDataset.size();
     }
 
 

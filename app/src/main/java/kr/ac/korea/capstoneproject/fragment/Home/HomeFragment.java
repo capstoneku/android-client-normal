@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private ArrayList<HomeNearCafeData> mDataset;
+    public ArrayList<NearCafeResponse.Cafe> mDataset = new ArrayList<>();
 
     public HomeFragment() {
         // Required empty public constructor
@@ -51,7 +52,6 @@ public class HomeFragment extends Fragment {
         initConnection();
         initRecyclerView(view);
 
-        getNearCafeData(getContext());
 
         return view;
     }
@@ -69,10 +69,31 @@ public class HomeFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.rv_home_near_cafe);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        getNearCafeData(getContext(), new getNearCafeDataCallback() {
+            @Override
+            public void onSuccess(ArrayList<NearCafeResponse.Cafe> mNearCafeDataset) {
+                mDataset.addAll(mNearCafeDataset);
+                mAdapter = new HomeNearCafeAdapter(getContext(), mDataset);
+                mRecyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+
+//        if (mDataset.size() != 0) {
+//            mAdapter = new HomeNearCafeAdapter(getContext(), mDataset);
+//            mRecyclerView.setAdapter(mAdapter);
+//        } else {
+//            // TODO: 2019-06-05 근처 카페가 없을 경우 정의.
+//        }
     }
 
-    private ArrayList<NearCafeResponse.Cafe> getNearCafeData(Context context) {
-        final ArrayList<NearCafeResponse.Cafe>[] nearCafeList = new ArrayList[]{new ArrayList<>()};
+    private void getNearCafeData(Context context, final getNearCafeDataCallback callback) {
+//        final ArrayList<NearCafeResponse.Cafe> nearCafeList = new ArrayList<>();
 
         GPS gps = new GPS(context);
         Location location = gps.getLocation();
@@ -83,8 +104,14 @@ public class HomeFragment extends Fragment {
         call.enqueue(new Callback<NearCafeResponse>() {
             @Override
             public void onResponse(Call<NearCafeResponse> call, Response<NearCafeResponse> response) {
-                Log.d("zzanzu", "onResponse: " + response.body().data.get(0).getName());
-                nearCafeList[0] = response.body().getData();
+                if(response.body().data.size() != 0) {
+                    Log.d("zzanzu", "onResponse: " + response.body().getData().get(0).getName());
+//                    nearCafeList.addAll(response.body().data);
+                    callback.onSuccess(response.body().data);
+                } else {
+                    Toast.makeText(getContext(), "주변에 카페가 없습니다.", Toast.LENGTH_LONG).show();
+                    callback.onError();
+                }
             }
 
             @Override
@@ -93,6 +120,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        return nearCafeList[0];
+//        return nearCafeList;
+    }
+
+    private interface getNearCafeDataCallback {
+        void onSuccess(ArrayList<NearCafeResponse.Cafe> mNearCafeDataset);
+        void onError();
     }
 }
