@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">CapstoneProject</string>
+    <string name="app_name">커피공화국</string>
+    <string name="title_my_page">My Page</string>
+    <string name="title_history">history</string>
+    <string name="title_coupon">Coupon</string>
+    <string name="action_search">action_search</string>
 </resources>

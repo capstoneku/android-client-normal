@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:padding="5dp"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:id="@+id/listview_item">
 
     <ImageView
         android:id="@+id/imageView"
@@ -28,6 +29,13 @@
             android:layout_weight="1"
             android:textColor="#ae1e1e"
             android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/textRat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/textRev"
