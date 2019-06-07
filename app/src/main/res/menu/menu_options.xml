@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/no_option"
+        android:title="없음" />
+
+    <item
+        android:id="@+id/less_sweet"
+        android:title="덜 달게" />
+
+    <item
+        android:id="@+id/more_sweet"
+        android:title="더 달게" />
+
+
+    <item
+        android:id="@+id/less_ice"
+        android:title="얼음 적게" />
+
+    <item
+        android:id="@+id/more_ice"
+        android:title="얼음 많이" />
+
+    <item
+        android:id="@+id/more_milk"
+        android:title="우유 추가" />
+
+    <item
+        android:id="@+id/more_shot"
+        android:title="샷 추가" />
+
+    <item
+        android:id="@+id/etc"
+        android:title="기타" />
+
+
+</menu>

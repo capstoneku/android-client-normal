@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -8,56 +9,229 @@
         android:id="@+id/title_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="주문하기"
-        android:textSize="40sp"
+        android:padding="16dp"
+        android:text="Order"
+        android:textSize="20sp"
+        android:textStyle="bold"
         android:layout_gravity="center_horizontal"/>
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
-
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <ImageView
-            android:id="@+id/menu_image"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:id="@+id/item_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:src="@drawable/americano" />
 
         <LinearLayout
+            android:padding="20dp"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:gravity="center_vertical"
-            android:layout_toRightOf="@+id/menu_image"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/item_image"
             >
 
             <TextView
-                android:id="@+id/menu_name"
+                android:id="@+id/item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="아메리카노"
                 android:textSize="20sp" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/button_minus"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="-"/>
+
+                <TextView
+                    android:padding="10dp"
+                    android:id="@+id/count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="20sp"/>
+
+                <Button
+                    android:id="@+id/button_plus"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="+"/>
+
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/menu_price"
+
+                android:id="@+id/item_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1500"
-                android:textSize="20sp" />
+                android:textSize="25sp"
+                android:textStyle="bold"/>
 
         </LinearLayout>
 
 
+    </LinearLayout>
 
-    </RelativeLayout>
 
-    <Button
-        android:id="@+id/button_order"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="주문하기"/>
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Hot"
+                android:textSize="20sp" />
+
+            <Switch
+                android:id="@+id/switch_hi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:track="@drawable/switch_hi_track_selector"
+                android:thumb="@drawable/switch_hi_thumb_selector"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Ice"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Size"
+                android:textSize="20sp"/>
+
+            <Button
+                android:id="@+id/item_size"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S"
+                android:textSize="20sp"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타 옵션1"
+                android:textSize="20sp"/>
+
+
+            <Button
+                android:id="@+id/item_options1"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="없음"
+                android:textSize="20sp"/>
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기타 옵션2"
+                android:textSize="20sp"/>
+
+
+            <Button
+                android:id="@+id/item_options2"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="없음"
+                android:textSize="20sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_weight="0.7"
+            android:id="@+id/button_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="담기"/>
+
+        <Button
+            android:layout_weight="0.7"
+            android:id="@+id/button_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="바로 주문"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
