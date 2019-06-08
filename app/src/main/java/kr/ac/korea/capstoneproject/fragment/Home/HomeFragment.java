@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayout mLinearLayout;
 
     public ArrayList<NearCafeResponse.Cafe> mDataset = new ArrayList<>();
 
@@ -50,8 +52,8 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         initConnection();
+        mLinearLayout = view.findViewById(R.id.layout_no_home_near_cafe);
         initRecyclerView(view);
-
 
         return view;
     }
@@ -80,16 +82,11 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onError() {
-
+                mLinearLayout.setVisibility(View.VISIBLE);
             }
         });
 
-//        if (mDataset.size() != 0) {
-//            mAdapter = new HomeNearCafeAdapter(getContext(), mDataset);
-//            mRecyclerView.setAdapter(mAdapter);
-//        } else {
-//            // TODO: 2019-06-05 근처 카페가 없을 경우 정의.
-//        }
+
     }
 
     private void getNearCafeData(Context context, final getNearCafeDataCallback callback) {
@@ -109,7 +106,6 @@ public class HomeFragment extends Fragment {
 //                    nearCafeList.addAll(response.body().data);
                     callback.onSuccess(response.body().data);
                 } else {
-                    Toast.makeText(getContext(), "주변에 카페가 없습니다.", Toast.LENGTH_LONG).show();
                     callback.onError();
                 }
             }
