@@ -11,8 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         initConnection();
-        mLinearLayout = view.findViewById(R.id.layout_no_home_near_cafe);
+        initView(view);
         initRecyclerView(view);
 
         return view;
@@ -67,6 +67,30 @@ public class HomeFragment extends Fragment {
 
     }
 
+    /**
+     * 홈 프래그먼트 뷰 초기화
+     *
+     * 주변 카페 검색 버튼 클릭시, 주변 카페가 없을경우 '근처 카페가 없습니다' 레이아웃을 숨김.
+     *
+     * @param view
+     */
+    private void initView(final View view) {
+        mLinearLayout = view.findViewById(R.id.layout_no_home_near_cafe);
+        ImageView myLocationIv = view.findViewById(R.id.iv_home_my_location);
+
+        myLocationIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initRecyclerView(view);
+            }
+        });
+    }
+
+    /**
+     * 카페 리스트 Recycler View 를 표시한
+     *
+     * @param view
+     */
     private void initRecyclerView(View view) {
         mRecyclerView = view.findViewById(R.id.rv_home_near_cafe);
         mLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -74,14 +98,19 @@ public class HomeFragment extends Fragment {
 
         getNearCafeData(getContext(), new getNearCafeDataCallback() {
             @Override
-            public void onSuccess(ArrayList<NearCafeResponse.Cafe> mNearCafeDataset) {
+            public void onSuccess(ArrayList<NearCafeResponse.Cafe> mNearCafeDataset) { // 주변에 카페가 있을경우
                 mDataset.addAll(mNearCafeDataset);
                 mAdapter = new HomeNearCafeAdapter(getContext(), mDataset);
+
+                mLinearLayout.setVisibility(View.GONE);
+                mRecyclerView.setVisibility(View.VISIBLE);
+
                 mRecyclerView.setAdapter(mAdapter);
             }
 
             @Override
-            public void onError() {
+            public void onError() { // 주변에 카페가 없을경우
+                mRecyclerView.setVisibility(View.GONE);
                 mLinearLayout.setVisibility(View.VISIBLE);
             }
         });
@@ -89,9 +118,14 @@ public class HomeFragment extends Fragment {
 
     }
 
+    /**
+     * 주변의 카페 리스트를 서버로부터 가져온다.
+     * 카페 리스트를 가져와서 콜백 함수에 전달, 리스트를 모두 가져왔을 경우 콜백 함수가 실행된다.
+     *
+     * @param context
+     * @param callback
+     */
     private void getNearCafeData(Context context, final getNearCafeDataCallback callback) {
-//        final ArrayList<NearCafeResponse.Cafe> nearCafeList = new ArrayList<>();
-
         GPS gps = new GPS(context);
         Location location = gps.getLocation();
 
@@ -102,8 +136,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<NearCafeResponse> call, Response<NearCafeResponse> response) {
                 if(response.body().data.size() != 0) {
-                    Log.d("zzanzu", "onResponse: " + response.body().getData().get(0).getName());
-//                    nearCafeList.addAll(response.body().data);
                     callback.onSuccess(response.body().data);
                 } else {
                     callback.onError();
