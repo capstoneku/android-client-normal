@@ -102,6 +102,16 @@ public class GPS extends Service implements LocationListener {
             locationManager.removeUpdates(GPS.this);
     }
 
+    public int getDistance(double lon, double lat) {
+        float[] result = new float[1];
+
+        if (location != null) {
+            Location.distanceBetween(lat, lon, location.getLatitude(), location.getLongitude(), result);
+        }
+
+        return Math.round(result[0]);
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

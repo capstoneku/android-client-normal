@@ -36,6 +36,8 @@ public class NearCafeResponse {
         public String[] signatures;
         @SerializedName("img")
         public String img;
+        @SerializedName("geometry")
+        public Geometry geometry;
         @SerializedName("congestions")
         public String congestions;
 
@@ -70,6 +72,24 @@ public class NearCafeResponse {
 
         public String getCongestions() {
             return congestions;
+        }
+
+        public class Geometry {
+            String type;
+            double[] coordinates;
+
+            public Geometry(String type, double[] coordinates) {
+                this.type = type;
+                this.coordinates = coordinates;
+            }
+
+            public String getType() {
+                return type;
+            }
+
+            public double[] getCoordinates() {
+                return coordinates;
+            }
         }
     }
 }
