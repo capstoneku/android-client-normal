@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +57,9 @@ public class SignUpActivity extends AppCompatActivity {
         final EditText passwordEdt = findViewById(R.id.et_password);
         // TODO: 4/9/19 비밀번호 확인 기능 추가, 서버 API 수정 요청
         final EditText passwordConfirmationEdt = findViewById(R.id.et_password_confirm);
+
+        passwordEdt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        passwordConfirmationEdt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override

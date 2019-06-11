@@ -60,7 +60,10 @@ public class HomeNearCafeAdapter extends RecyclerView.Adapter<HomeNearCafeAdapte
     @Override
     public void onBindViewHolder(@NonNull NearCafeViewHolder nearCafeViewHolder, int i) {
         // glide로 이미지 적용
-        Glide.with(mContext).load(mDataset.get(i).getImg()).into(nearCafeViewHolder.cafeIv);
+        Glide.with(mContext)
+                .load(mDataset.get(i).getImg())
+                .error(R.drawable.img_default_coffee_shop)
+                .into(nearCafeViewHolder.cafeIv);
         // 거리 적용
         nearCafeViewHolder.cafeDistanceTv.setText(nearCafeViewHolder.mGPS.getDistance(mDataset.get(i).geometry.getCoordinates()[0], mDataset.get(i).geometry.getCoordinates()[1]) + "m"); // TODO: 2019-06-08 거리 구하는 로직 구현
         // 이름 적용

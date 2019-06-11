@@ -18,21 +18,15 @@
             android:orientation="horizontal"
             >
 
-            <TextView
-                android:id="@+id/tv_home_near_cafe"
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="@string/home_fragment_near_cafe"
-                android:textSize="20sp"
-                android:textColor="@color/themeColorAccent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/near_cafe_text"
                 />
 
             <ImageView
@@ -56,7 +50,7 @@
             android:id="@+id/rv_home_near_cafe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/nearCafeBackgroundGrey"
+            android:background="@color/themeColor"
             android:padding="8dp"
             android:scrollbars="none"
             />
@@ -65,7 +59,7 @@
             android:id="@+id/layout_no_home_near_cafe"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:background="@color/nearCafeBackgroundGrey"
+            android:background="@color/themeColor"
             android:gravity="center"
             android:visibility="gone"
             >

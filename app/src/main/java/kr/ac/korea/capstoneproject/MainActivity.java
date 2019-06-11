@@ -54,12 +54,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initToolBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.app_name);
+//        toolbar.setTitle(R.string.app_name);
 
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_black_24dp);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     /**

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +54,8 @@ public class SignInActivity extends AppCompatActivity {
         TextView signUpTv = findViewById(R.id.tv_sign_up);
         final EditText emailEdt = findViewById(R.id.et_email);
         final EditText passwordEdt = findViewById(R.id.et_password);
+
+        passwordEdt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
