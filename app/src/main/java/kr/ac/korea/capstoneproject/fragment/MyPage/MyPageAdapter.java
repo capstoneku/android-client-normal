@@ -31,7 +31,7 @@ public class MyPageAdapter extends RecyclerView.Adapter<MyPageAdapter.MyPageView
     @Override
     public MyPageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.row_my_page, parent, false);
+                .inflate(R.layout.my_page_menu_row, parent, false);
 
         MyPageViewHolder vh = new MyPageViewHolder(v);
 

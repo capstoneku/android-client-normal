@@ -11,8 +11,9 @@ import android.view.MenuItem;
 
 import kr.ac.korea.capstoneproject.fragment.CouponFragment;
 import kr.ac.korea.capstoneproject.fragment.HistoryFragment;
-import kr.ac.korea.capstoneproject.fragment.HomeFragment;
+import kr.ac.korea.capstoneproject.fragment.Home.HomeFragment;
 import kr.ac.korea.capstoneproject.fragment.MyPage.MyPageFragment;
+import kr.ac.korea.capstoneproject.utils.PermissionUtil;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigationView;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        PermissionUtil.requestAccessLocationPermission(getApplicationContext(), this);
 
         initView();
     }
