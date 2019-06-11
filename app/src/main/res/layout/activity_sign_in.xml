@@ -7,14 +7,14 @@
     tools:context=".SignInActivity"
     android:background="@color/themeColor"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center|bottom"
     >
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo_intro"
-        android:layout_marginBottom="20dp"
+        android:src="@drawable/logo"
+        android:layout_marginBottom="120dp"
         />
 
     <EditText
@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:text="Sign in"
         android:textColor="@color/themeColor"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/round_corner_et"
         android:backgroundTint="@color/colorAccent"
         />
@@ -56,6 +57,7 @@
         android:layout_height="wrap_content"
         android:text="Do not have account? Sign In"
         android:textColor="@color/black"
+        android:layout_marginBottom="40dp"
         />
 
 
