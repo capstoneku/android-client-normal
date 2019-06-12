@@ -1,5 +1,6 @@
 package kr.ac.korea.capstoneproject.data.remote;
 
+import kr.ac.korea.capstoneproject.BuildConfig;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
