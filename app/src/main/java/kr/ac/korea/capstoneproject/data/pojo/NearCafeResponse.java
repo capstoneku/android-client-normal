@@ -30,8 +30,6 @@ public class NearCafeResponse {
         public String cafeId;
         @SerializedName("name")
         public String name;
-        @SerializedName("rating")
-        public String[] rating;
         @SerializedName("signatures")
         public String[] signatures;
         @SerializedName("img")
@@ -41,10 +39,9 @@ public class NearCafeResponse {
         @SerializedName("congestions")
         public String congestions;
 
-        public Cafe(String cafeId, String name, String[] rating, String[] signatures, String img, String congestions) {
+        public Cafe(String cafeId, String name, String[] signatures, String img, String congestions) {
             this.cafeId = cafeId;
             this.name = name;
-            this.rating = rating;
             this.signatures = signatures;
             this.img = img;
             this.congestions = congestions;
@@ -56,10 +53,6 @@ public class NearCafeResponse {
 
         public String getName() {
             return name;
-        }
-
-        public String[] getRating() {
-            return rating;
         }
 
         public String[] getSignatures() {
