@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -43,16 +42,14 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
     public void onBindViewHolder(MyViewHolder holder, int position) {
         CafeList cafe = cafeList.get(position);
 
-        holder.cafeName.setText(cafe.getName());
-        holder.rating.setText(cafe.getRating().toString());
+        holder.cafeName.setText((cafe.getName()));
+        holder.rating.setText(String.valueOf(cafe.getRating()));
         holder.sigMenu.setText(cafe.getSignatures().toString());
         Glide.with(context)
                 .load(cafe.getImg())
                 .centerCrop()
                 .into(holder.imageView);
-
     }
-
     @Override
     public int getItemCount() {
         return cafeList.size();
@@ -74,7 +71,6 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
         public TextView sigMenu;
         public ImageView imageView;
 
-
         public MyViewHolder(View view) {
             super(view);
             cafeName = (TextView) view.findViewById(R.id.cafeName);
@@ -83,5 +79,4 @@ public class CafeAdapter extends RecyclerView.Adapter<CafeAdapter.MyViewHolder> 
             imageView = (ImageView) view.findViewById(R.id.imageView);
         }
     }
-
 }

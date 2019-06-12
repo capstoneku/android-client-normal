@@ -18,7 +18,7 @@ public class CafeList {
     @SerializedName("name")
     private String name;
     @SerializedName("rating")
-    private List<String> rating;
+    private float rating;
     @SerializedName("signatures")
     private List<String> signatures;
     @SerializedName("img")
@@ -43,11 +43,11 @@ public class CafeList {
         this.name = name;
     }
 
-    public List<String> getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(List<String> rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

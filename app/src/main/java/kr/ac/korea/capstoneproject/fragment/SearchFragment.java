@@ -80,8 +80,8 @@ public class SearchFragment extends Fragment {
 
             }
         });
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         cafeAdapter = new CafeAdapter(cafeList, getActivity());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -126,6 +126,8 @@ public class SearchFragment extends Fragment {
             }
         });
     }
+
+
 /**
  public interface OnFragmentInteractionListener {
  }
