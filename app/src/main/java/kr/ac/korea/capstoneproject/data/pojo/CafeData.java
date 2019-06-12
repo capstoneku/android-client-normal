@@ -6,6 +6,9 @@ import java.util.List;
 
 public class CafeData {
 
+
+    @SerializedName("shopHours")
+    public String shopHours;
     @SerializedName("geometry")
     public Geometry geometry;
     @SerializedName("options")
@@ -39,7 +42,8 @@ public class CafeData {
     }
 
     public CafeData(
-            Geometry geometry, Options options, String cafeId, String name, String address, String tel, List<String> itemIds, String profileImg, boolean deprecated, float congestion) {
+            String shopHours, Geometry geometry, Options options, String cafeId, String name, String address, String tel, List<String> itemIds, String profileImg, boolean deprecated, float congestion) {
+        this.shopHours = shopHours;
         this.cafeId = cafeId;
         this.geometry = geometry;
         this.options = options;
@@ -51,6 +55,8 @@ public class CafeData {
         this.deprecated = deprecated;
         this.congestion = congestion;
     }
+
+    public String getShopHours() { return shopHours;}
 
     public Geometry getGeometry() { return geometry;}
 

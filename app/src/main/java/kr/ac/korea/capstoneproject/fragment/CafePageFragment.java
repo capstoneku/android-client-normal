@@ -45,20 +45,14 @@ import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance
 public class CafePageFragment extends Fragment {
     private Retrofit mRetrofit;
     private CafePageRequest mCafePageRequest;
-    private CafeItemsRequest mCafeItemsRequest;
-    private Button mCafePageBtn;
-    private TextView cafeShop;
-    private TextView cafeTogo;
-    private TextView cafeName;
-    private TextView cafeAddress;
-    private TextView cafeTel;
-    private TextView cafeMenu;
+//    private Button mCafePageBtn;
+    private TextView cafeTime, cafeShop, cafeTogo, cafeName, cafeAddress, cafeTel, cafeCongestion;
     private ImageView cafeLogo;
-    private TextView cafeCongestion;
+
+    private CafeItemsRequest mCafeItemsRequest;
     private RecyclerView cafeItems;
     private ImageView menuImage;
-    private TextView menuName;
-    private TextView menuPrice;
+    private TextView menuName, menuPrice;
     private MenuAdapter adapter;
     private List<CafeItemsData> cafeItemsDataList;
 
@@ -76,7 +70,7 @@ public class CafePageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cafe_page, null);
         View view2 = inflater.inflate(R.layout.menu_item, null);
 
-        mCafePageBtn = view2.findViewById(R.id.button_order);
+        cafeTime = view.findViewById(R.id.cafe_time);
         cafeShop = view.findViewById(R.id.cafe_shop);
         cafeTogo = view.findViewById(R.id.cafe_togo);
         cafeName = view.findViewById(R.id.cafe_name);
@@ -84,6 +78,9 @@ public class CafePageFragment extends Fragment {
         cafeTel = view.findViewById(R.id.cafe_tel);
         cafeLogo = view.findViewById(R.id.cafe_logo);
         cafeCongestion = view.findViewById(R.id.cafe_cngst_degree);
+//        mCafePageBtn = view2.findViewById(R.id.button_order);
+
+        //RecyclerView
         cafeItems = view.findViewById(R.id.cafe_menu);
         menuImage = view2.findViewById(R.id.menu_image);
         menuName = view2.findViewById(R.id.menu_name);
@@ -97,17 +94,18 @@ public class CafePageFragment extends Fragment {
         cafeItems.addItemDecoration(new DividerItemDecoration(getActivity(),LinearLayoutManager.VERTICAL));
         cafeItems.setAdapter(adapter);
 
+//        mCafePageBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), OrderActivity.class);
+//                startActivity(intent);
+//            }
+//
+//        });
+
         initView();
         initView2();
 
-        mCafePageBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), OrderActivity.class);
-            startActivity(intent);
-            }
-
-        });
 
 
         return view;
@@ -133,6 +131,9 @@ public class CafePageFragment extends Fragment {
 
                 if (response.body().success == true) {
                     CafeData cafeData = response.body().data;
+
+                    //매장 이용가능 시간
+                    cafeTime.setText(cafeData.getShopHours());
 
                     //매장 이용가능 여부
                     if(cafeData.getOptions().shop == true){
@@ -173,13 +174,6 @@ public class CafePageFragment extends Fragment {
                     //카페 로고 이미지
                     Glide.with(CafePageFragment.this).load(cafeData.getProfileImg()).into(cafeLogo);
 
-//
-//                    //카페 메뉴 리스트 (임시)
-//                    List<String> itemIds = cafeData.getItemIds();
-//                    cafeMenu.setText(itemIds.toString());
-
-// replace로        Intent intent = new Intent(getContext(), CafePageFragment.class);
-//                  startActivity(intent);
                 }
             }
 
@@ -205,15 +199,6 @@ public class CafePageFragment extends Fragment {
                         adapter.notifyDataSetChanged();
                     }
 
-//                    //카페 메뉴 리스트 (임시)
-//                    menuName.setText(cafeItemsDataList.get(0).getName());
-//                    menuPrice.setText(cafeItemsDataList.get(0).getName());
-//                    Glide.with(CafePageFragment.this).load(cafeItemsDataList.get(0).getImage()).into(menuImage);
-
-
-
-// replace로        Intent intent = new Intent(getContext(), CafePageFragment.class);
-//                  startActivity(intent);
                 }
             }
 
