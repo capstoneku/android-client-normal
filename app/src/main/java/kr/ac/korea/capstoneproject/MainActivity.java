@@ -1,13 +1,11 @@
 package kr.ac.korea.capstoneproject;
 
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -15,6 +13,7 @@ import kr.ac.korea.capstoneproject.fragment.CouponFragment;
 import kr.ac.korea.capstoneproject.fragment.HistoryFragment;
 import kr.ac.korea.capstoneproject.fragment.HomeFragment;
 import kr.ac.korea.capstoneproject.fragment.MyPageFragment;
+import kr.ac.korea.capstoneproject.fragment.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigationView;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 최초 실행시 홈 프래그먼트를 기본으로 표
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_main, new HomeFragment()).commit();
+                .add(R.id.fragment_main, new SearchFragment()).commit();
     }
 
     /**
