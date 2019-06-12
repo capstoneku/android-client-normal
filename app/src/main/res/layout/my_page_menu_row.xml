@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/tv_my_page_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/my_page_recyclerview_row_margin_top"
+        android:layout_marginBottom="@dimen/my_page_recyclerview_row_margin_bottom"
+        android:layout_marginLeft="@dimen/my_page_recyclerview_row_margin_left"
+        android:text="EXAMPLE"
+        android:textColor="@color/themeColorAccent"
+        android:textSize="@dimen/my_page_recyclerview_row_textview_size"
+        />
+
+</LinearLayout>

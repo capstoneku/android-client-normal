@@ -2,4 +2,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--My Page-->
+    <dimen name="my_page_recyclerview_row_textview_size">20sp</dimen>
+    <dimen name="my_page_recyclerview_row_margin_top">16dp</dimen>
+    <dimen name="my_page_recyclerview_row_margin_bottom">16dp</dimen>
+    <dimen name="my_page_recyclerview_row_margin_left">20dp</dimen>
 </resources>

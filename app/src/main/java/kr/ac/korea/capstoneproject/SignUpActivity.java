@@ -1,8 +1,11 @@
 package kr.ac.korea.capstoneproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +25,7 @@ import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance
 public class SignUpActivity extends AppCompatActivity {
     private Retrofit mRetrofit;
     private SignUpRequest mSignUpRequest;
+    private SharedPreferences mSharedPreference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void initConnection() {
         mRetrofit = getInstance();
         mSignUpRequest = mRetrofit.create(SignUpRequest.class);
+        mSharedPreference = getSharedPreferences("pref", Context.MODE_PRIVATE);
     }
 
     /**
@@ -53,6 +58,9 @@ public class SignUpActivity extends AppCompatActivity {
         // TODO: 4/9/19 비밀번호 확인 기능 추가, 서버 API 수정 요청
         final EditText passwordConfirmationEdt = findViewById(R.id.et_password_confirm);
 
+        passwordEdt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        passwordConfirmationEdt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,39 +68,43 @@ public class SignUpActivity extends AppCompatActivity {
                 final String nickname = nicknameEdt.getText().toString().trim();
                 final String password = passwordEdt.getText().toString().trim();
                 final String passwordConfirmation = passwordConfirmationEdt.getText().toString().trim();
+                final String fcmToken = mSharedPreference.getString("FCMToken","fail_getting_token");
 
-                SignUpData signUpData = new SignUpData(account, nickname, password, passwordConfirmation);
+                if(fcmToken != "fail_getting_token") {
+                    SignUpData signUpData = new SignUpData(account, nickname, password, passwordConfirmation, fcmToken);
 
-                Call<SignUpResponse> call = mSignUpRequest.signUpRequest(signUpData);
-                call.enqueue(new Callback<SignUpResponse>() {
-                    @Override
-                    public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                        Log.d("zzanzu", "onResponse: " + response.body().success);
+                    Call<SignUpResponse> call = mSignUpRequest.signUpRequest(signUpData);
+                    call.enqueue(new Callback<SignUpResponse>() {
+                        @Override
+                        public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
+                            Log.d("zzanzu", "onResponse: " + response.body().success);
 
-                        if (response.body().success) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Sign Up Success, Please Sign in",
-                                    Toast.LENGTH_LONG)
-                                    .show();
+                            if (response.body().success) {
+                                Toast.makeText(getApplicationContext(),
+                                        "Sign Up Success, Please Sign in",
+                                        Toast.LENGTH_LONG)
+                                        .show();
 
-                            Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "No Response, try later",
+                                Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "No Response, try later",
+                                        Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SignUpResponse> call, Throwable t) {
+                            Toast.makeText(getApplicationContext(), "Sign Up Fail, try later",
                                     Toast.LENGTH_LONG)
                                     .show();
                         }
-                    }
-
-                    @Override
-                    public void onFailure(Call<SignUpResponse> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(), "Sign Up Fail, try later",
-                                Toast.LENGTH_LONG)
-                                .show();
-                    }
-                });
-
+                    });
+                } else {
+                    Toast.makeText(SignUpActivity.this, "FCM 토큰 생성 오류", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
