@@ -24,6 +24,8 @@ public class CafeData {
     public String profileImg;
     @SerializedName("deprecated")
     public boolean deprecated;
+    @SerializedName("congestion")
+    public float congestion;
 
 
     public class Geometry{
@@ -37,7 +39,7 @@ public class CafeData {
     }
 
     public CafeData(
-            Geometry geometry, Options options, String cafeId, String name, String address, String tel, List<String> itemIds, String profileImg, boolean deprecated) {
+            Geometry geometry, Options options, String cafeId, String name, String address, String tel, List<String> itemIds, String profileImg, boolean deprecated, float congestion) {
         this.cafeId = cafeId;
         this.geometry = geometry;
         this.options = options;
@@ -47,6 +49,7 @@ public class CafeData {
         this.itemIds = itemIds;
         this.profileImg = profileImg;
         this.deprecated = deprecated;
+        this.congestion = congestion;
     }
 
     public Geometry getGeometry() { return geometry;}
@@ -65,6 +68,8 @@ public class CafeData {
 
     public String getProfileImg() { return profileImg;}
 
-    public boolean deprecated() { return deprecated;}
+    public boolean getdeprecated() { return deprecated;}
+
+    public float getCongestion() { return congestion;}
 
 }

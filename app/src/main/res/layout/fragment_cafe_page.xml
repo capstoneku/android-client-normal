@@ -34,7 +34,6 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
                 android:paddingBottom="16dp">
@@ -45,8 +44,7 @@
                     android:id="@+id/cafe_logo"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/mmd_logo" />
+                    android:layout_centerVertical="true" />
 
 
                 <TextView
@@ -58,7 +56,28 @@
                     android:layout_toRightOf="@id/cafe_logo"
                     android:paddingLeft="16dp"
                     android:textSize="18sp" />
-                <!--android:text="매머드 커피"-->
+
+
+                <TextView
+                    android:id="@+id/cafe_cngst"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/cafe_name"
+                    android:paddingLeft="16dp"
+                    android:textSize="12sp"
+                    android:text="실시간 혼잡도: "/>
+
+                <TextView
+                    android:id="@+id/cafe_cngst_degree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/cafe_cngst"
+                    android:textSize="12sp"
+                    android:text="default"/>
+
+
 
 
             </RelativeLayout>
@@ -73,8 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp"
-
-                    android:src="@drawable/location" />
+                    app:srcCompat="@drawable/ic_place_black_24dp" />
 
                 <TextView
                     android:id="@+id/cafe_address"
@@ -115,7 +133,7 @@
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:paddingRight="16dp"
-                        android:src="@drawable/tel" />
+                        app:srcCompat="@drawable/ic_phone_black_24dp" />
 
                     <TextView
                         android:layout_toRightOf="@+id/phone"
@@ -138,14 +156,13 @@
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:paddingRight="16dp"
-                        android:src="@drawable/tel" />
+                        app:srcCompat="@drawable/ic_access_time_black_24dp" />
 
                     <TextView
                         android:layout_toRightOf="@+id/cafe_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="매일 08:00 ~ 21:00"
                         android:textSize="15sp"/>
 
                 </RelativeLayout>
@@ -160,7 +177,7 @@
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:paddingRight="16dp"
-                        android:src="@drawable/tel" />
+                        app:srcCompat="@drawable/ic_store_black_24dp" />
 
                     <TextView
                         android:layout_toRightOf="@+id/cafe_service"
@@ -168,8 +185,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Take out 전문"
-
                         android:textSize="15sp"/>
 
                     <TextView
@@ -178,7 +193,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:text="Take out 전문"
                         android:textSize="15sp"/>
 
                 </RelativeLayout>
@@ -197,47 +211,13 @@
                 android:paddingRight="16dp"
                 android:paddingTop="16dp" />
 
-
-            <RelativeLayout
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/cafe_menu"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
+            </android.support.v7.widget.RecyclerView>
 
-                <ImageView
-                    android:id="@+id/menu_image"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:src="@drawable/americano" />
-
-                <TextView
-                    android:id="@+id/menu_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/menu_image"
-                    android:paddingRight="16dp"
-                    android:text="아메리카노"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/menu_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/menu_name"
-                    android:text="1500"
-                    android:textSize="15sp" />
-
-                <Button
-                    android:id="@+id/button_order"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:text="주문하기"/>
-
-            </RelativeLayout>
 
             <TextView
                 android:layout_width="match_parent"
