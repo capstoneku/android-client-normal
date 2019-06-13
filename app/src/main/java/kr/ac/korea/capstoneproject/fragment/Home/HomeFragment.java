@@ -1,7 +1,9 @@
 package kr.ac.korea.capstoneproject.fragment.Home;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
@@ -89,7 +91,7 @@ public class HomeFragment extends Fragment {
 
         if(mSharedPreferences.getBoolean("is_ordered", false)) {
             if(mSharedPreferences.getBoolean("is_ready", false)) {
-                mReadyAnnounceTv.setText("음료가 준비 완료되었습니다!");
+                mReadyAnnounceTv.setText("음료가 완성되었습니다!");
                 mReadyConditionTv.setText("준비 완료");
             }
             mReadyLayout.setVisibility(View.VISIBLE);
@@ -106,11 +108,24 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if(mSharedPreferences.getBoolean("is_ready", false)) {
-                    mReadyLayout.setVisibility(View.GONE);
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+    
+                    alertDialogBuilder.setTitle("픽업 완료");
+                    alertDialogBuilder.setMessage("음료 수령을 완료하셨어요! \n오늘 하루도 좋은 하루 보내세요 :)")
+                            .setCancelable(false)
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    mReadyLayout.setVisibility(View.GONE);
 
-                    mEditor.putBoolean("is_ready", false);
-                    mEditor.putBoolean("is_ordered", false);
-                    mEditor.apply();
+                                    mEditor.putBoolean("is_ready", false);
+                                    mEditor.putBoolean("is_ordered", false);
+                                    mEditor.apply();
+                                }
+                            });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
                 }
             }
         });
