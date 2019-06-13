@@ -2,6 +2,7 @@ package kr.ac.korea.capstoneproject.fragment.Home;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -34,11 +36,14 @@ import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance
 public class HomeFragment extends Fragment {
     private Retrofit mRetrofit;
     private GetNearCafeRequest mGetNearCafeRequest;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private LinearLayout mLinearLayout;
+    private LinearLayout mLinearLayout, mReadyLayout;
+    private TextView mReadyAnnounceTv, mReadyConditionTv;
 
     public ArrayList<NearCafeResponse.Cafe> mDataset = new ArrayList<>();
 
@@ -64,7 +69,8 @@ public class HomeFragment extends Fragment {
     private void initConnection() {
         mRetrofit = getInstance();
         mGetNearCafeRequest = mRetrofit.create(GetNearCafeRequest.class);
-
+        mSharedPreferences = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
     }
 
     /**
@@ -77,11 +83,35 @@ public class HomeFragment extends Fragment {
     private void initView(final View view) {
         mLinearLayout = view.findViewById(R.id.layout_no_home_near_cafe);
         ImageView myLocationIv = view.findViewById(R.id.iv_home_my_location);
+        mReadyLayout = view.findViewById(R.id.layout_home_ready);
+        mReadyAnnounceTv = mReadyLayout.findViewById(R.id.tv_home_ready_announce);
+        mReadyConditionTv = mReadyLayout.findViewById(R.id.tv_home_ready_condition);
+
+        if(mSharedPreferences.getBoolean("is_ordered", false)) {
+            if(mSharedPreferences.getBoolean("is_ready", false)) {
+                mReadyAnnounceTv.setText("음료가 준비 완료되었습니다!");
+                mReadyConditionTv.setText("준비 완료");
+            }
+            mReadyLayout.setVisibility(View.VISIBLE);
+        }
 
         myLocationIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 initRecyclerView(view);
+            }
+        });
+
+        mReadyLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mSharedPreferences.getBoolean("is_ready", false)) {
+                    mReadyLayout.setVisibility(View.GONE);
+
+                    mEditor.putBoolean("is_ready", false);
+                    mEditor.putBoolean("is_ordered", false);
+                    mEditor.apply();
+                }
             }
         });
     }

@@ -24,14 +24,9 @@ public class FirbaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
-            if (/* Check if data needs to be processed by long running job */ true) {
-                // For long-running tasks (10 seconds or more) use Firebase Job Dispatcher.
-//                scheduleJob();
-            } else {
-                // Handle message within 10 seconds
-//                handleNow();
-            }
-
+            SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("is_ready", true); // 음료 완성 여부
         }
 
         // Check if message contains a notification payload.

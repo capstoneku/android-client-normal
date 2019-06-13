@@ -1,6 +1,8 @@
 package kr.ac.korea.capstoneproject;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,7 @@ import com.bumptech.glide.Glide;
 
 import kr.ac.korea.capstoneproject.R;
 import kr.ac.korea.capstoneproject.fragment.CafePageFragment;
+import kr.ac.korea.capstoneproject.fragment.Home.HomeFragment;
 
 public class OrderActivity extends AppCompatActivity {
 
@@ -42,6 +45,7 @@ public class OrderActivity extends AppCompatActivity {
     Button btn_size;
     Button btn_options1;
     Button btn_options2;
+    Button btn_order;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +76,7 @@ public class OrderActivity extends AppCompatActivity {
         btn_options1 = findViewById(R.id.item_options1);
         btn_options2 = findViewById(R.id.item_options2);
 
+        btn_order = findViewById(R.id.button_save);
 
         switch_hi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -118,8 +123,6 @@ public class OrderActivity extends AppCompatActivity {
             }
         });
 
-
-
         btn_size.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,8 +150,6 @@ public class OrderActivity extends AppCompatActivity {
                 popup.show();
             }
         });
-
-
 
         btn_options1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,7 +193,6 @@ public class OrderActivity extends AppCompatActivity {
                 popup.show();
             }
         });
-
 
         btn_options2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,5 +238,20 @@ public class OrderActivity extends AppCompatActivity {
         });
 
 
+        btn_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("is_ordered", true);
+                editor.putBoolean("is_ready", false); // 음료 완성 여부
+                editor.putString("drink_ordered", name);
+                editor.apply();
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 }

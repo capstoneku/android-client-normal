@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 최초 실행시 홈 프래그먼트를 기본으로 표시
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_main, new SearchFragment()).commit();
+                .add(R.id.fragment_main, new HomeFragment()).commit();
     }
 
     /**

@@ -68,8 +68,10 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:textColor="@color/black"
+        android:textColor="@color/themeColorAccent"
         android:text="주문하기"
+        android:background="@drawable/round_corner_et"
+        android:backgroundTint="@color/themeColor"
         />
 
 </RelativeLayout>

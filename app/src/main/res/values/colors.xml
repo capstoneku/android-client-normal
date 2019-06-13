@@ -7,6 +7,7 @@
     <color name="themeColorAccent">#522223</color>
 
     <color name="black">#000000</color>
+    <color name="red">#E91E1E</color>
     <color name="nearCafeDistanceFont">#116456</color>
 
 </resources>
