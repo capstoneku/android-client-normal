@@ -51,7 +51,7 @@ public class IntroActivity extends AppCompatActivity {
             handler.postDelayed((new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent = new Intent(context, SignUpActivity.class);
+                    Intent intent = new Intent(context, SignInActivity.class);
                     startActivity(intent);
                     finish();
                 }
