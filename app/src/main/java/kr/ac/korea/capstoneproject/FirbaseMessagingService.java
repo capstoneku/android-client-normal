@@ -2,8 +2,14 @@ package kr.ac.korea.capstoneproject;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -27,6 +33,7 @@ public class FirbaseMessagingService extends FirebaseMessagingService {
             SharedPreferences sharedPreferences = getSharedPreferences("pref", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("is_ready", true); // 음료 완성 여부
+            editor.apply();
         }
 
         // Check if message contains a notification payload.
@@ -55,6 +62,7 @@ public class FirbaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(String token) {
+        super.onNewToken(token);
         Log.d(TAG, "Refreshed token: " + token);
 
         // sharedPreference에 저장

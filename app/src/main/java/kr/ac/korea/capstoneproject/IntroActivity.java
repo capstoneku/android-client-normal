@@ -3,11 +3,9 @@ package kr.ac.korea.capstoneproject;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-import kr.ac.korea.capstoneproject.fragment.CafePageFragment;
 
 public class IntroActivity extends AppCompatActivity {
     private static final int DELAY_TIME = 1500;

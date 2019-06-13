@@ -15,6 +15,7 @@ import android.widget.TextView;
 import kr.ac.korea.capstoneproject.data.pojo.SignInData;
 import kr.ac.korea.capstoneproject.data.pojo.SignInResponse;
 import kr.ac.korea.capstoneproject.data.remote.SignInRequest;
+import kr.ac.korea.capstoneproject.utils.PermissionUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -50,6 +51,8 @@ public class SignInActivity extends AppCompatActivity {
      * 회원가입 텍스트 클릭 이벤트를 정의한다.
      */
     private void initView() {
+        PermissionUtil.requestAccessLocationPermission(getApplicationContext(), SignInActivity.this);
+
         Button signInBtn = findViewById(R.id.btn_sign_in);
         TextView signUpTv = findViewById(R.id.tv_sign_up);
         final EditText emailEdt = findViewById(R.id.et_email);
