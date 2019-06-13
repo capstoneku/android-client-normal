@@ -13,12 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import kr.ac.korea.capstoneproject.OrderActivity;
@@ -40,20 +42,14 @@ import static kr.ac.korea.capstoneproject.data.remote.RetrofitClient.getInstance
 public class CafePageFragment extends Fragment {
     private Retrofit mRetrofit;
     private CafePageRequest mCafePageRequest;
-    private CafeItemsRequest mCafeItemsRequest;
     private Button mCafePageBtn;
-    private TextView cafeShop;
-    private TextView cafeTogo;
-    private TextView cafeName;
-    private TextView cafeAddress;
-    private TextView cafeTel;
-    private TextView cafeMenu;
+    private TextView cafeTime, cafeShop, cafeTogo, cafeName, cafeAddress, cafeTel, cafeCongestion;
     private ImageView cafeLogo;
-    private TextView cafeCongestion;
+
+    private CafeItemsRequest mCafeItemsRequest;
     private RecyclerView cafeItems;
     private ImageView menuImage;
-    private TextView menuName;
-    private TextView menuPrice;
+    private TextView menuName, menuPrice;
     private MenuAdapter adapter;
     private List<CafeItemsData> cafeItemsDataList;
 
@@ -96,6 +92,7 @@ public class CafePageFragment extends Fragment {
         cafeTogo = cafeInfoView.findViewById(R.id.cafe_togo);
         cafeName = cafeInfoView.findViewById(R.id.cafe_name);
         cafeAddress = cafeInfoView.findViewById(R.id.cafe_address);
+        cafeTime = cafeInfoView.findViewById(R.id.cafe_time_tv);
         cafeTel = cafeInfoView.findViewById(R.id.cafe_tel);
         cafeLogo = cafeInfoView.findViewById(R.id.cafe_logo);
         cafeCongestion = cafeInfoView.findViewById(R.id.cafe_cngst_degree);
@@ -133,6 +130,9 @@ public class CafePageFragment extends Fragment {
 
                 if (response.body().success == true) {
                     CafeData cafeData = response.body().data;
+
+                    //매장 이용가능 시간
+                    cafeTime.setText(cafeData.getShopHours());
 
                     //매장 이용가능 여부
                     if (cafeData.getOptions().shop == true){

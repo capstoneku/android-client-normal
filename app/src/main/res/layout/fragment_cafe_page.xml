@@ -166,6 +166,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/cafe_time_tv"
                         android:layout_toRightOf="@+id/cafe_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

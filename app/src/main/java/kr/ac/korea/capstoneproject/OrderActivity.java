@@ -9,14 +9,32 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import kr.ac.korea.capstoneproject.R;
+import kr.ac.korea.capstoneproject.fragment.CafePageFragment;
 
 public class OrderActivity extends AppCompatActivity {
 
+    Intent intent;
+    String name;
+    int price;
+    int crnt_price;
+    int crnt_ctn;
+    String image;
+    TextView itemName;
+    TextView itemPrice;
+    ImageView itemImage;
+
+
+    Switch switch_hi;
     Button btn_plus;
     Button btn_minus;
     int item_ctn = 1;
@@ -29,6 +47,22 @@ public class OrderActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
+        intent = getIntent();
+
+        name = intent.getStringExtra("name");
+        price = intent.getIntExtra("price", 0);
+        image = intent.getStringExtra("image");
+
+        itemName = findViewById(R.id.item_name);
+        itemPrice = findViewById(R.id.item_price);
+        itemImage = findViewById(R.id.item_image);
+
+        itemName.setText(name);
+        itemPrice.setText(String.valueOf(price));
+        Glide.with(this).load(image).into(itemImage);
+
+
+        switch_hi = findViewById(R.id.switch_hi);
 
         btn_plus = findViewById(R.id.button_plus);
         btn_minus = findViewById(R.id.button_minus);
@@ -39,11 +73,31 @@ public class OrderActivity extends AppCompatActivity {
         btn_options2 = findViewById(R.id.item_options2);
 
 
+        switch_hi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked){
+                    crnt_price = Integer.parseInt((String) itemPrice.getText());
+                    crnt_ctn = Integer.parseInt((String) tv_count.getText());
+                    itemPrice.setText(String.valueOf(crnt_price + 500*crnt_ctn));
+                }
+                else {
+                    crnt_price = Integer.parseInt((String) itemPrice.getText());
+                    crnt_ctn = Integer.parseInt((String) tv_count.getText());
+                    itemPrice.setText(String.valueOf(crnt_price - 500*crnt_ctn));
+                }
+
+            }
+        });
+
+
         btn_plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 item_ctn++;
                 tv_count.setText(String.valueOf(item_ctn));
+                itemPrice.setText(String.valueOf(price*item_ctn));
             }
         });
 
@@ -54,10 +108,12 @@ public class OrderActivity extends AppCompatActivity {
                 if(item_ctn==1){
                     Toast.makeText(getApplicationContext(), "최소 수량은 1개 입니다.", Toast.LENGTH_SHORT).show();
                     tv_count.setText(String.valueOf(item_ctn));
+                    itemPrice.setText(String.valueOf(price*item_ctn));
                 }
                 else {
                     item_ctn--;
                     tv_count.setText(String.valueOf(item_ctn));
+                    itemPrice.setText(String.valueOf(price*item_ctn));
                 }
             }
         });
