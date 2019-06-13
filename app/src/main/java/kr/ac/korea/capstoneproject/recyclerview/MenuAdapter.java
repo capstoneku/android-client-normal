@@ -19,9 +19,6 @@ import java.util.List;
 import kr.ac.korea.capstoneproject.OrderActivity;
 import kr.ac.korea.capstoneproject.R;
 import kr.ac.korea.capstoneproject.data.pojo.CafeItemsData;
-import kr.ac.korea.capstoneproject.data.pojo.CafeItemsResponse;
-import kr.ac.korea.capstoneproject.fragment.CafePageFragment;
-import retrofit2.Callback;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
 
