@@ -17,7 +17,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginVertical="10dp"
         android:background="#ECE9E9"
-        android:padding="5dp">
+        android:padding="5dp"
+        >
+
         <EditText
             android:id="@+id/searchCafe"
             android:layout_width="match_parent"
@@ -27,14 +29,18 @@
             android:drawableRight="@android:drawable/ic_menu_search"
             android:hint="  카페이름으로 검색"
             android:textColorHint="#929596"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            />
+
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="2dp">
+        android:padding="2dp"
+        >
+
         <TextView
             android:id="@+id/searchText"
             android:layout_width="wrap_content"
@@ -42,7 +48,8 @@
             android:textColor="#4D4A4A"
             android:text="주변카페 검색"
             android:layout_marginLeft="10dp"
-            android:textSize="18dp"/>
+            android:textSize="18dp"
+            />
 
     </LinearLayout>
 
@@ -52,7 +59,8 @@
         android:padding="2dp"
         android:id="@+id/nowhere"
         android:orientation="horizontal"
-        tools:ignore="ExtraText">
+        tools:ignore="ExtraText"
+        >
 
         <EditText
             android:id="@+id/locationShow"
@@ -64,7 +72,8 @@
             android:editable="false"
             android:padding="10dp"
             android:text="서울시 성북구 안암동5가"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            />
 
         <ImageButton
             android:id="@+id/locationUpdate"
@@ -76,8 +85,11 @@
             android:padding="0dp"
             android:scaleType="fitCenter"
             android:src="@drawable/placeholder"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            />
+
     </LinearLayout>
+
     <include layout="@layout/listview_item"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -87,7 +99,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="5dp"
-        tools:context="com.example.mskir.hw7.MainActivity">
+        tools:context="com.example.mskir.hw7.MainActivity"
+        >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -96,7 +109,10 @@
             android:scrollbarAlwaysDrawHorizontalTrack="false"
             android:scrollbarAlwaysDrawVerticalTrack="true"
             android:textFilterEnabled="true"
-            android:padding="5dp"/>
+            android:padding="5dp"
+            />
+
     </LinearLayout>
+
 </LinearLayout>
 
