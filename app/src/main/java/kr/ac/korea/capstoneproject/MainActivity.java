@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import kr.ac.korea.capstoneproject.fragment.CafePageFragment;
 import kr.ac.korea.capstoneproject.fragment.CouponFragment;
 import kr.ac.korea.capstoneproject.fragment.HistoryFragment;
 import kr.ac.korea.capstoneproject.fragment.Home.HomeFragment;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 최초 실행시 홈 프래그먼트를 기본으로 표시
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_main, new CafePageFragment()).commit();
+                .add(R.id.fragment_main, new HomeFragment()).commit();
     }
 
     /**
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
      * @author Chanjoo Lee
      * @version 0.1
      */
-    private void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.fragment_main, fragment);
