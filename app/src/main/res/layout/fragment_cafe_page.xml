@@ -9,10 +9,10 @@
     android:orientation="vertical"
     >
 
-
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,72 +27,70 @@
                 android:paddingTop="16dp"
                 android:paddingRight="16dp"
                 android:text="카페 정보"
+                android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                />
 
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <!--카페 제목 및 혼잡도 레이아웃-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="16dp">
+                android:padding="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
 
-
-                <ImageView
-
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/cafe_logo"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true" />
-
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    />
 
                 <TextView
-
                     android:id="@+id/cafe_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/cafe_logo"
-                    android:paddingLeft="16dp"
-                    android:textSize="18sp" />
-
+                    android:layout_marginLeft="16dp"
+                    android:text="Cafe Name"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    />
 
                 <TextView
                     android:id="@+id/cafe_cngst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/cafe_name"
-                    android:paddingLeft="16dp"
+                    android:layout_marginLeft="16dp"
                     android:textSize="12sp"
-                    android:text="실시간 혼잡도: "/>
+                    android:textColor="@color/black"
+                    android:text="실시간 혼잡도: "
+                    />
 
                 <TextView
                     android:id="@+id/cafe_cngst_degree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/cafe_cngst"
                     android:textSize="12sp"
-                    android:text="default"/>
+                    android:textColor="@color/black"
+                    android:text="default"
+                    />
 
+            </LinearLayout>
 
-
-
-            </RelativeLayout>
-
-
+            <!--카페 위치 레이아웃-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <ImageView
                     android:id="@+id/location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="16dp"
-                    app:srcCompat="@drawable/ic_place_black_24dp" />
+                    app:srcCompat="@drawable/ic_place_black_24dp"
+                    />
 
                 <TextView
                     android:id="@+id/cafe_address"
@@ -103,29 +101,35 @@
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="16dp"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    />
 
             </RelativeLayout>
 
+            <!--카페 위치 지도-->
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:padding="16dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/mmd_map" />
+                android:src="@drawable/mmd_map"
+                />
 
+            <!--카페 정보-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingTop="16dp"
                 android:paddingLeft="16dp"
-                android:paddingRight="16dp">
-
+                android:paddingRight="16dp"
+                >
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <ImageView
                         android:id="@+id/phone"
@@ -133,7 +137,8 @@
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:paddingRight="16dp"
-                        app:srcCompat="@drawable/ic_phone_black_24dp" />
+                        app:srcCompat="@drawable/ic_phone_black_24dp"
+                        />
 
                     <TextView
                         android:layout_toRightOf="@+id/phone"
@@ -141,14 +146,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        />
 
                 </RelativeLayout>
 
-
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <ImageView
                         android:id="@+id/cafe_time"
@@ -156,20 +162,24 @@
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:paddingRight="16dp"
-                        app:srcCompat="@drawable/ic_access_time_black_24dp" />
+                        app:srcCompat="@drawable/ic_access_time_black_24dp"
+                        />
 
                     <TextView
                         android:layout_toRightOf="@+id/cafe_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        />
 
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <ImageView
                         android:id="@+id/cafe_service"
@@ -177,7 +187,8 @@
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:paddingRight="16dp"
-                        app:srcCompat="@drawable/ic_store_black_24dp" />
+                        app:srcCompat="@drawable/ic_store_black_24dp"
+                        />
 
                     <TextView
                         android:layout_toRightOf="@+id/cafe_service"
@@ -185,7 +196,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        />
 
                     <TextView
                         android:layout_toRightOf="@+id/cafe_shop"
@@ -193,57 +205,73 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:textSize="15sp"/>
+                        android:textSize="15sp"
+                        android:textColor="@color/black"
+                        />
 
                 </RelativeLayout>
 
             </LinearLayout>
 
-
-
+            <!--카페 메뉴 제목-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="카페 메뉴"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingTop="16dp" />
+                android:paddingTop="16dp"
+                />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/cafe_menu"
+            <!--카페 메뉴 리스트-->
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/cafe_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    />
 
+            </RelativeLayout>
 
+            <!--카페 리뷰 제목-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="리뷰"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingTop="16dp" />
+                android:paddingTop="16dp"
+                />
 
+            <!--카페 리뷰 내용-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/cafe_reviews"
                 android:text="리뷰 내용"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingLeft="16dp"
                 android:paddingRight="16dp"
-                android:paddingTop="16dp" />
+                android:paddingTop="16dp"
+                />
 
         </LinearLayout>
 
     </ScrollView>
-
 
 </LinearLayout>
 

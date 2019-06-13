@@ -126,6 +126,8 @@ public class HomeFragment extends Fragment {
      * @param callback
      */
     private void getNearCafeData(Context context, final getNearCafeDataCallback callback) {
+        mDataset.clear();
+
         GPS gps = new GPS(context);
         Location location = gps.getLocation();
 
