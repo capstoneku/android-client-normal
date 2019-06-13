@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import kr.ac.korea.capstoneproject.fragment.CouponFragment;
@@ -72,14 +74,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home: {
+            case android.R.id.home:
                 // TODO: 2019-05-08 바텀 네비게이션 버튼들의 아이콘, 텍스트 색을 unfocused 색으로 변경.
                 replaceFragment(new HomeFragment());
                 return true;
-            }
+            case R.id.menu_search :
+                replaceFragment(new SearchFragment());
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu, menu);
+        return true;
     }
 
     /**
