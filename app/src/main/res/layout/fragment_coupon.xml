@@ -5,11 +5,32 @@
     android:layout_height="match_parent"
     tools:context=".fragment.CouponFragment">
 
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="coupon"
-        android:gravity="center"
-        />
+        android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="139dp"
+            android:layout_height="59dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/coupon_text" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <ListView
+                android:id="@+id/listview_coupon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"
+                android:scrollbarAlwaysDrawVerticalTrack="true" />
+
+        </ScrollView>
+
+    </LinearLayout>
 </FrameLayout>
