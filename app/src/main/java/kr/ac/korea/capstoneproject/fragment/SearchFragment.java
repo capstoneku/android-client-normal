@@ -1,4 +1,4 @@
-package kr.ac.korea.capstoneproject;
+package kr.ac.korea.capstoneproject.fragment;
 
 
 import android.os.Bundle;
@@ -45,11 +45,10 @@ public class SearchFragment extends Fragment {
         return new SearchFragment();
     }
 
-    private void initConnection() {
+    private void initConnection(){
         mRetrofit = getInstance();
         mCafeListRequest = mRetrofit.create(CafeListRequest.class);
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,11 +91,10 @@ public class SearchFragment extends Fragment {
         getCafeList();
         return view;
     }
-
-    private void filter(String text) {
+    private void filter(String text){
         ArrayList<CafeList> filteredList = new ArrayList<>();
-        for (CafeList item : cafeList) {
-            if (item.getName().toLowerCase().contains(text.toLowerCase())) {
+        for (CafeList item : cafeList){
+            if(item.getName().toLowerCase().contains(text.toLowerCase())){
                 filteredList.add(item);
             }
         }
@@ -108,15 +106,15 @@ public class SearchFragment extends Fragment {
         Call<CafeListResponse> call = apiInterface.getCafeList();
         call.enqueue(new Callback<CafeListResponse>() {
             @Override
-            public void onResponse(Call<CafeListResponse> call, Response<CafeListResponse> response) {
+            public void onResponse( Call<CafeListResponse> call, Response<CafeListResponse> response) {
 
-                if (response == null) {
+                if (response==null){
                     Toast.makeText(getActivity(), "Somthing Went Wrong...!!", Toast.LENGTH_SHORT).show();
-                } else {
-                    for (CafeList cafe : response.body().getCafeList()) {
+                }else{
+                    for (CafeList cafe:response.body().getCafeList()){
                         cafeList.add(cafe);
                     }
-                    Log.i("RESPONSE: ", "" + response.toString());
+                    Log.i("RESPONSE: ", ""+response.toString());
                 }
                 cafeAdapter.notifyDataSetChanged();
             }

@@ -15,7 +15,7 @@ import kr.ac.korea.capstoneproject.fragment.CouponFragment;
 import kr.ac.korea.capstoneproject.fragment.HistoryFragment;
 import kr.ac.korea.capstoneproject.fragment.Home.HomeFragment;
 import kr.ac.korea.capstoneproject.fragment.MyPage.MyPageFragment;
-import kr.ac.korea.capstoneproject.utils.PermissionUtil;
+import kr.ac.korea.capstoneproject.fragment.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mBottomNavigationView;
@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         initView();
@@ -130,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
      * @author Chanjoo Lee
      * @version 0.1
      */
-    public void replaceFragment(Fragment fragment) {
+    private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         transaction.replace(R.id.fragment_main, fragment);

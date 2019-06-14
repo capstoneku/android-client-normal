@@ -2,7 +2,7 @@ package kr.ac.korea.capstoneproject.data.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CafeListResponse{
     @SerializedName("success")
@@ -12,9 +12,9 @@ public class CafeListResponse{
     @SerializedName("errors")
     public String errors;
     @SerializedName("data")
-    public ArrayList<CafeList> data;
+    public List<CafeList> data;
 
-    public ArrayList<CafeList> getCafeList() {
+    public List<CafeList> getCafeList() {
         return data;
     }
 }
