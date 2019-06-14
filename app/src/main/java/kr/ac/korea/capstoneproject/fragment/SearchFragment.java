@@ -126,10 +126,4 @@ public class SearchFragment extends Fragment {
             }
         });
     }
-
-
-/**
- public interface OnFragmentInteractionListener {
- }
- */
 }
