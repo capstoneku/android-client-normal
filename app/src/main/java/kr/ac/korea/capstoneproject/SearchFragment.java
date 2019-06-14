@@ -37,6 +37,20 @@ public class SearchFragment extends Fragment {
     public SearchFragment(){
 
     }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        View view = inflater.inflate(R.layout.fragment_search, null);
+
+        initConnection();
+        requestCafe();
+        initView(view);
+
+        return view;
+    }
+
     /**
      * 네트워크 관련 객체 초기화 함수
      */
@@ -44,39 +58,12 @@ public class SearchFragment extends Fragment {
         mRetrofit = getInstance();
         mSearchListRequest = mRetrofit.create(SearchListRequest.class);
     }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        initConnection();
 
-        super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.fragment_search, null);
-
-
+    private void initView(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CafeListAdapter();
         //recyclerView.setAdapter(adapter);
-
-        cafeList = new ArrayList<>();
-        SearchListRequest apiService = RetrofitClient.getInstance().create(SearchListRequest.class);
-        Call<CafeListResponse> call = mSearchListRequest.searchListRequest();
-
-        call.enqueue(new Callback<CafeListResponse>() {
-            @Override
-            public void onResponse(Call<CafeListResponse> call, Response<CafeListResponse> response) {
-                cafeList.add(response.body().getCafeList().get(0));
-                Log.d("TAG","Response = "+ cafeList);
-                adapter.CafeListAdapter(getContext(), cafeList);
-                recyclerView.setAdapter(adapter);
-
-            }
-            @Override
-            public void onFailure(Call<CafeListResponse> call, Throwable t) {
-                Log.d("TAG","Response = "+t.toString());
-            }
-        });
-
         /**
          *EditText 텍스트 변경 이벤트 처리
          *EditText(@id/searchCafe)를 통해 필터링할 텍스트 입력받은 다음, 필터링 수행
@@ -97,7 +84,26 @@ public class SearchFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
             }
         }) ;
-        return view;
+    }
+
+    private void requestCafe() {
+        cafeList = new ArrayList<>();
+
+        Call<CafeListResponse> call = mSearchListRequest.searchListRequest();
+        call.enqueue(new Callback<CafeListResponse>() {
+            @Override
+            public void onResponse(Call<CafeListResponse> call, Response<CafeListResponse> response) {
+                Log.d("TAG","Response = "+ cafeList);
+
+                cafeList.addAll(response.body().getCafeList());
+                adapter.CafeListAdapter(getContext(), cafeList);
+                recyclerView.setAdapter(adapter);
+            }
+            @Override
+            public void onFailure(Call<CafeListResponse> call, Throwable t) {
+                Log.d("TAG","Response = "+t.toString());
+            }
+        });
     }
 
 }
